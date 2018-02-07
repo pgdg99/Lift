@@ -107,7 +107,7 @@ public class RobotBase
                //estudiante.pickThing();
                         
             //Especifica el numero de Thing que tiene en robot en el bolso
-            int numeroThings = estudiante.countThingsInBackpack();
+            //int numeroThings = estudiante.countThingsInBackpack();
             
             //Poner Thing, se debe validar que tenga things en el bolso
             estudiante.putThing();
