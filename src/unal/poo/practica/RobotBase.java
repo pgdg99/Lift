@@ -1,176 +1,157 @@
 package unal.poo.practica;
 
 import becker.robots.*;
+import java.util.Scanner;
+import java.lang.*;
 
-/** 
- * Practica de los conceptos de Programacion Estructurada
- * @author Fabian Andres Giraldo */
+
 public class RobotBase
 {    
-       //Declaracion de Variables -- Forma temporal - No es buena practica tener
-       //variables estaticas
-        public static City objetos;
-        public static Robot estudiante;
+        public static City building;
+        public static RobotSE lift1;
+        public static RobotSE lift2;
+        public static int currentFloor1=1;
+        public static int currentFloor2=1;
         
 	public static void main (String[] args){
-            //Declarar la creacion de la ciudad
-            objetos = new City("Field.txt");
-	    objetos.showThingCounts(true);
+           
+            building = new City("Field.txt");
+	    building.showThingCounts(true);
             
-            //Direction.NORTH, EAST, SOUTH, WEST
-            //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            estudiante = new Robot(objetos,0, 2, Direction.EAST,0);
-            
-	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
-            creacionFuncion(3);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(5);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(5);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(5);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(5);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(2);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(2);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(1);
-            
-            //Tomando decisiones, Si puedo tomar un Thing
-            boolean puedeTomar = estudiante.canPickThing();
-            
-            //Tomar un Thing
-            if(puedeTomar == true)
-               estudiante.pickThing();
-            
-            creacionFuncionTurn(2);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(1);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(1);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(3);
-            
-            creacionFuncionTurn(1);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(1);
-            
-            creacionFuncion(1);
-            
-            int n=0;
-            
-            while (puedeTomar==true){
-                estudiante.pickThing();
-                n+=1;
-            }
-            
-            while (n!=0)
-            //Tomando decisiones, Si puedo tomar un Thing
-            //boolean puedeTomar = estudiante.canPickThing();
-            
-            //Tomar un Thing
-            //if(puedeTomar == true)
-               //estudiante.pickThing();
-                        
-            //Especifica el numero de Thing que tiene en robot en el bolso
-            //int numeroThings = estudiante.countThingsInBackpack();
-            
-            //Poner Thing, se debe validar que tenga things en el bolso
-            estudiante.putThing();
-                       
-            //Si el frente esta libre de Wall
-            //estudiante.frontIsClear();
-            
-            //Invocando una funcion
-            //creacionFuncion(4);
-            
-            //Toman un Thing
-            //estudiante.pickThing();
-            
-            creacionFuncionTurn(2);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(3);
-            
-            creacionFuncionTurn(1);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(1);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(2);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(1);
-            
-            creacionFuncion(1);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(4);
-            
-            creacionFuncionTurn(3);
-            
-            creacionFuncion(3);
-            
-            
+            lift1 = new RobotSE(building,10, 2, Direction.NORTH,0);
+            lift2 = new RobotSE(building,10, 1, Direction.NORTH,0);
+                                   
+            gotoFloor(1,5);
+            pickPeople(1);
+            gotoFloor(2,4);
+            pickPeople(2);
+                                
 	}
         
-        public static void creacionFuncion(int parametroEntrada){
-            for (int i = 0; i < parametroEntrada; i++) 
-                estudiante.move();
+        public static void gotoFloor(int n, int floor){
+            
+            if(n==1){
+                if((floor-currentFloor1)<0){
+                    if(lift1.isFacingSouth()==false){
+                        lift1.turnAround();
+                    }
+                    lift1.move(Math.abs(floor-currentFloor1));
+                    currentFloor1=floor;
+                }
+                if((floor-currentFloor1)>0){
+                    if(lift1.isFacingNorth()==false){
+                        lift1.turnAround();
+                    }
+                    lift1.move((floor-currentFloor1));
+                    currentFloor1=floor;
+                }
+            }
+            if(n==2){
+                if((floor-currentFloor2)<0){
+                    if(lift2.isFacingSouth()==false){
+                        lift2.turnAround();
+                    }
+                    lift2.move(Math.abs(floor-currentFloor2));
+                    currentFloor2=floor;
+                }
+                if((floor-currentFloor2)>0){
+                    if(lift2.isFacingNorth()==false){
+                        lift2.turnAround();
+                    }
+                    lift2.move((floor-currentFloor2));
+                    currentFloor2=floor;
+                }
+            }
+            
         }
-        public static void creacionFuncionTurn(int parametroEntrada){
-            for (int i = 0; i < parametroEntrada; i++) 
-                estudiante.turnLeft();
+        
+        public static void pickPeople(int n){
+            
+            if(n==1){
+                int c= lift1.countThingsInBackpack();
+                lift1.setLabel(Integer.toString(c));
+                while(lift1.countThingsInBackpack()<5){
+                    if(lift1.isFacingNorth()==true){
+                        lift1.turnRight();
+                        lift1.move();
+                    }
+                    if(lift1.isFacingSouth()==true){
+                        lift1.turnLeft();
+                        lift1.move();
+                    }
+                    int q=0;
+                    int f=5-(lift1.countThingsInBackpack());
+                    while(lift1.canPickThing()==true){
+                        lift1.pickThing();
+                        c= lift1.countThingsInBackpack();
+                        lift1.setLabel(Integer.toString(c));
+                        lift1.move();
+                        q++;
+                    }
+
+                    if(q>5){
+                        lift1.turnAround();
+                        lift1.move(f+1);
+                        for(int i=(q-f);i>0;i--){
+                            lift1.putThing();
+                            c= lift1.countThingsInBackpack();
+                            lift1.setLabel(Integer.toString(c));
+                            lift1.move();
+                        }
+                        lift1.turnRight();
+                    }
+
+                    if(q<=5){
+                        lift1.turnAround();
+                        lift1.move(5);
+                        lift1.turnRight();
+                    }
+                }
+            }
+            
+            if(n==2){
+                int c= lift2.countThingsInBackpack();
+                lift2.setLabel(Integer.toString(c));
+                while(lift2.countThingsInBackpack()<5){
+                    if(lift2.isFacingNorth()==true){
+                        lift2.turnRight();
+                        lift2.move(2);
+                    }
+                    if(lift2.isFacingSouth()==true){
+                        lift2.turnLeft();
+                        lift2.move(2);
+                    }
+                    int q=0;
+                    int f=5-(lift2.countThingsInBackpack());
+                    while(lift2.canPickThing()==true){
+                        lift2.pickThing();
+                        c= lift2.countThingsInBackpack();
+                        lift2.setLabel(Integer.toString(c));
+                        lift2.move();
+                        q++;
+                    }
+
+                    if(q>5){
+                        lift2.turnAround();
+                        lift2.move(f+1);
+                        for(int i=(q-f);i>0;i--){
+                            lift2.putThing();
+                            c= lift2.countThingsInBackpack();
+                            lift2.setLabel(Integer.toString(c));
+                            lift2.move();
+                        }
+                        lift2.move();
+                        lift2.turnRight();
+                    }
+
+                    if(q<=5){
+                        lift2.turnAround();
+                        lift2.move(6);
+                        lift2.turnRight();
+                    }
+                }
+            }
         }
+        
 }
 
