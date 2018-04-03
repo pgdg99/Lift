@@ -25,6 +25,10 @@ public class RobotBase
             pickPeople(1);
             gotoFloor(2,4);
             pickPeople(2);
+            gotoFloor(1,7);
+            leavePeople(1,3);
+            gotoFloor(2,8);
+            leavePeople(2,4);
                                 
 	}
         
@@ -70,17 +74,23 @@ public class RobotBase
             if(n==1){
                 int c= lift1.countThingsInBackpack();
                 lift1.setLabel(Integer.toString(c));
+                
                 while(lift1.countThingsInBackpack()<5){
+                    
                     if(lift1.isFacingNorth()==true){
                         lift1.turnRight();
                         lift1.move();
                     }
+                    
                     if(lift1.isFacingSouth()==true){
                         lift1.turnLeft();
                         lift1.move();
                     }
+                    
                     int q=0;
+                    
                     int f=5-(lift1.countThingsInBackpack());
+                    
                     while(lift1.canPickThing()==true){
                         lift1.pickThing();
                         c= lift1.countThingsInBackpack();
@@ -112,17 +122,23 @@ public class RobotBase
             if(n==2){
                 int c= lift2.countThingsInBackpack();
                 lift2.setLabel(Integer.toString(c));
+                
                 while(lift2.countThingsInBackpack()<5){
+                    
                     if(lift2.isFacingNorth()==true){
                         lift2.turnRight();
                         lift2.move(2);
                     }
+                    
                     if(lift2.isFacingSouth()==true){
                         lift2.turnLeft();
                         lift2.move(2);
                     }
+                    
                     int q=0;
+                    
                     int f=5-(lift2.countThingsInBackpack());
+                    
                     while(lift2.canPickThing()==true){
                         lift2.pickThing();
                         c= lift2.countThingsInBackpack();
@@ -149,6 +165,81 @@ public class RobotBase
                         lift2.move(6);
                         lift2.turnRight();
                     }
+                }
+            }
+        }
+        
+        public static void leavePeople(int n, int x){
+            
+            if(n==1){
+                int c= lift1.countThingsInBackpack();
+                lift1.setLabel(Integer.toString(c));
+                if(lift1.countThingsInBackpack()!=0){
+
+                    if(lift1.isFacingNorth()==true){
+                        lift1.turnRight();
+                        lift1.move();
+                    }
+
+                    if(lift1.isFacingSouth()==true){
+                        lift1.turnLeft();
+                        lift1.move();
+                    }
+
+                    int q=1;
+
+                    while(lift1.canPickThing()==true){
+                        lift1.move();
+                        q++;
+                    }
+
+                    for(int i=x;i>0;i--){
+                        lift1.putThing();
+                        c= lift1.countThingsInBackpack();
+                        lift1.setLabel(Integer.toString(c));
+                        lift1.move();
+                        q++;
+                    }
+
+                    lift1.turnAround();
+                    lift1.move(q);
+                    lift1.turnRight();
+                }
+            }
+            
+            if(n==2){
+                int c= lift2.countThingsInBackpack();
+                lift2.setLabel(Integer.toString(c));
+                if(lift2.countThingsInBackpack()!=0){
+
+                    if(lift2.isFacingNorth()==true){
+                        lift2.turnRight();
+                        lift2.move(2);
+                    }
+
+                    if(lift2.isFacingSouth()==true){
+                        lift2.turnLeft();
+                        lift2.move(2);
+                    }
+
+                    int q=1;
+
+                    while(lift2.canPickThing()==true){
+                        lift2.move();
+                        q++;
+                    }
+
+                    for(int i=x;i>0;i--){
+                        lift2.putThing();
+                        c= lift2.countThingsInBackpack();
+                        lift2.setLabel(Integer.toString(c));
+                        lift2.move();
+                        q++;
+                    }
+
+                    lift2.turnAround();
+                    lift2.move(q+1);
+                    lift2.turnRight();
                 }
             }
         }

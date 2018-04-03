@@ -25,6 +25,19 @@ Harvest a Field
    becker.robots.Thing 7 8
    becker.robots.Thing 7 9
    becker.robots.Thing 7 10
+
+   becker.robots.Thing 4 3
+   becker.robots.Thing 4 4
+   becker.robots.Thing 4 5
+   becker.robots.Thing 4 6
+   becker.robots.Thing 4 7
+
+   becker.robots.Thing 3 3
+   becker.robots.Thing 3 4
+   becker.robots.Thing 3 5
+   becker.robots.Thing 3 6
+   becker.robots.Thing 3 7
+   becker.robots.Thing 3 8
       
 # wall
    
