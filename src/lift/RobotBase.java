@@ -1,4 +1,4 @@
-package unal.poo.practica;
+package lift;
 
 import becker.robots.*;
 import java.util.Scanner;
