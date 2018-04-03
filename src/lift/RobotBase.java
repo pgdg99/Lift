@@ -12,6 +12,17 @@ public class RobotBase
         public static RobotSE lift2;
         public static int currentFloor1=1;
         public static int currentFloor2=1;
+        public static int qFloor1=0;
+        public static int qFloor2=0;
+        public static int qFloor3=0;
+        public static int qFloor4=0;
+        public static int qFloor5=0;
+        public static int qFloor6=0;
+        public static int qFloor7=0;
+        public static int qFloor8=0;
+        public static int qFloor9=0;
+        public static int qFloor10=0;
+        public static int nPeople=31;
         
 	public static void main (String[] args){
            
@@ -20,19 +31,53 @@ public class RobotBase
             
             lift1 = new RobotSE(building,10, 2, Direction.NORTH,0);
             lift2 = new RobotSE(building,10, 1, Direction.NORTH,0);
-                                   
+                                    
             gotoFloor(1,5);
             pickPeople(1);
+            
             gotoFloor(2,4);
             pickPeople(2);
+            
             gotoFloor(1,7);
             leavePeople(1,3);
+            
             gotoFloor(2,8);
             leavePeople(2,4);
                                 
 	}
         
         public static void gotoFloor(int n, int floor){
+            
+            if(floor==1){
+                qFloor1+=1;
+            }
+            if(floor==2){
+                qFloor2+=1;
+            }
+            if(floor==3){
+                qFloor3+=1;
+            }
+            if(floor==4){
+                qFloor4+=1;
+            }
+            if(floor==5){
+                qFloor5+=1;
+            }
+            if(floor==6){
+                qFloor6+=1;
+            }
+            if(floor==7){
+                qFloor7+=1;
+            }
+            if(floor==8){
+                qFloor8+=1;
+            }
+            if(floor==9){
+                qFloor9+=1;
+            }
+            if(floor==10){
+                qFloor10+=1;
+            }
             
             if(n==1){
                 if((floor-currentFloor1)<0){
