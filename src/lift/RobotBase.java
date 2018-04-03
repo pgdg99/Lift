@@ -43,7 +43,19 @@ public class RobotBase
             
             gotoFloor(2,8);
             leavePeople(2,4);
-                                
+            
+            System.out.println("Floor 1 visits: " + qFloor1);
+            System.out.println("Floor 2 visits: " + qFloor2);
+            System.out.println("Floor 3 visits: " + qFloor3);
+            System.out.println("Floor 4 visits: " + qFloor4);
+            System.out.println("Floor 5 visits: " + qFloor5);
+            System.out.println("Floor 6 visits: " + qFloor6);
+            System.out.println("Floor 7 visits: " + qFloor7);
+            System.out.println("Floor 8 visits: " + qFloor8);
+            System.out.println("Floor 9 visits: " + qFloor9);
+            System.out.println("Floor 10 visits: " + qFloor10);
+            System.out.println("Number of people on building: " + nPeople);
+                                            
 	}
         
         public static void gotoFloor(int n, int floor){
